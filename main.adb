@@ -59,7 +59,7 @@ procedure Main is
       loop
          IloscKgOwocow := LosIloscOwocow.Random(LosOwoce);
          Put_Line("-->Gospodarstwo: Panie czy znajdzie sie miejsce na " & Integer'Image(IloscKgOwocow) & " kg owocow");
-         if MagazynSurowcowy.czyBedzieMiejsceNaNoweTowary(IloscKgOwocow) then
+         if MagazynSurowcowy.czyBedzieMiejsceNaNoweTowary(IloscKgOwocow, "Owoce") then
             Put_Line("-->Gospodarstwo: Dostawa owocow poleciala");
             Winiarnia.dostawaOwocow(IloscKgOwocow);
          else
@@ -86,7 +86,7 @@ procedure Main is
          IloscDrozdzy := LosIloscDrozdzy.Random(LosDrozdze);
          Put_Line("-->HurtowaniaWiniarska: Czy jest miejsce na " & Integer'Image(IloscPaczekCukru) & " paczek cukru i "
                     & Integer'Image(IloscDrozdzy) & " Drozdzy");
-         if MagazynSurowcowy.czyBedzieMiejsceNaNoweTowary(IloscPaczekCukru+IloscDrozdzy) then
+         if MagazynSurowcowy.czyBedzieMiejsceNaNoweTowary(IloscPaczekCukru+IloscDrozdzy, "CukierDrozdze") then
             Put_Line("-->HurtowaniaWiniarska: Puszczam dostawe");
             Winiarnia.dostawaCukruIDrozdzy(IloscPaczekCukru, IloscDrozdzy);
          else

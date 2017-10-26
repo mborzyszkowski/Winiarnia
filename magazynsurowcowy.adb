@@ -47,12 +47,18 @@ package body MagazynSurowcowy is
    end stanMagazynu;
    
    -- informacja dla producenta czy jest sens jechac z towarami
-   function czyBedzieMiejsceNaNoweTowary (IloscTowarow : in Integer) return Boolean is
+   function czyBedzieMiejsceNaNoweTowary (IloscTowarow : in Integer; RodzajTowarow : in String) return Boolean is
    begin
-      if (IloscTowarow + OczekiwanaDostawa + ObecneZapelnienie) <= PojemnoscMagazynu then
-         Put_Line("-->MagazynSurowcowy: Jest miejsce na twoje towary");
-         OczekiwanaDostawa := OczekiwanaDostawa + IloscTowarow;
-         return True;
+      if (IloscTowarow + OczekiwanaDostawa + ObecneZapelnienie) <= PojemnoscMagazynu then       
+         if ((RodzajTowarow = "Owoce") and Float(KgOwocow + IloscTowarow) < (Float(PojemnoscMagazynu) * ((7.0/11.0) * 1.3))) 
+           or ((RodzajTowarow = "CukierDrozdze") and Float(PaczkiCukru + Drozdze + IloscTowarow) < (Float(PojemnoscMagazynu) * ((4.0/11.0) * 1.3))) then
+            Put_Line("-->MagazynSurowcowy: Jest miejsce na twoje towary");
+            OczekiwanaDostawa := OczekiwanaDostawa + IloscTowarow;
+            return True;
+         else 
+            Put_Line("-->MagazynSurowcowy: Nie ma miejsca na twoje towary");
+            return False;
+         end if;
       else
          Put_Line("-->MagazynSurowcowy: Nie ma miejsca na twoje towary");
          return False;

@@ -12,7 +12,7 @@ package MagazynSurowcowy is
    -- zwraca stan magazynu
    procedure stanMagazynu;
    -- zapytanie producenta do magazynu czy jest miesce na towary
-   function czyBedzieMiejsceNaNoweTowary (IloscTowarow : in Integer) return Boolean;
+   function czyBedzieMiejsceNaNoweTowary (IloscTowarow : in Integer; RodzajTowarow : in String) return Boolean;
 private
    -- ObecnaZapelnienie = KgOwocow + PaczkiCukru + Drozdze, OczekiwanaDostawa - produkty ktore umownie zostana dostarczone
    -- maksymalnie zapenienie jest <= Pojemnosci magazynu
